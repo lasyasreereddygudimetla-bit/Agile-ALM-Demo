@@ -1,0 +1,12 @@
+// Fetch tasks from API on page load
+fetch('/api/tasks')
+  .then(response => response.json())
+  .then(tasks => {
+    const taskList = document.getElementById('task-list');
+    tasks.forEach(task => {
+      const taskElement = document.createElement('li');
+      taskElement.textContent = task.title;
+      taskList.appendChild(taskElement);
+    });
+  })
+  .catch(error => console.error('Error fetching tasks:', error));
